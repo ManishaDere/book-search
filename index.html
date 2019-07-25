@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="build/styles.css">
+
+    <title>Book search</title>
+  </head>
+  <body>
+    <header>
+      <h4>Book Finder</h4>
+    </header>
+    <div id="root" class="container"></div>
+    <script  id="home--template" type="text/x-handlebars-template">
+      <div id="home">
+        <div id="search"></div>
+        <div id="info"></div>
+        <div id="book-list"></div>
+        <div id="pagination" class="pagination-sm"></div>
+      </div>
+    </script>
+    <script id="searchform--template" type="text/x-handlebars-template">
+      <div class="search-books">
+        <form class="search-books__form">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="form__searchText"
+              placeholder="Harry Potter, Food and Love"
+            >
+            <small class="text-muted form-text">Search the world's most comprehensive index of full-text books.</small>
+          </div>
+          <div>
+            <button class="btn btn-primary form__searchBtn">SEARCH</button>
+          </div>
+        </form>
+      </div>
+    </script>
+    <script id="bookItems--template" type="text/x-handlebars-template">
+      <div class="card">
+        <img class="card-img-top" src={{imageLinks}} alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{title}}</h5>
+          <p class="card-text">{{description}}</p>
+          <a href="{{infoLink}}" class="btn btn-primary">View More</a>
+        </div>
+      </div>
+    </script>
+    <script id="dataInfo--template" type="text/x-handlebars-template">
+      <h4>Search results for: {{q}}</h4>
+      <p>Total results: {{totalItems}}</p>
+    </script>
+
+
+    <footer class="text-center">&copy; 2019</footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="build/book-search.js"></script>
+  </body>
+</html>

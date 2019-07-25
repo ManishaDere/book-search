@@ -1,0 +1,47 @@
+h4 {
+	text-align: left;
+	padding: 10px;
+}
+.search-books {
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+}
+.search-books__form {
+	display: flex;
+}
+.form__searchBtn {
+	margin-left: 20px;
+}
+.text-muted {
+  color: #6c757d!important;
+}
+.form-text {
+  display: block;
+  margin-top: .25rem;
+}
+#pagination {
+	margin-top: 30px;
+}
+#book-list {
+	display: flex;
+	flex-wrap: wrap;
+}
+.book {
+	flex-basis: 25%;
+	padding: 15px;
+	margin-bottom: 20px;
+}
+.card {
+	min-height: 700px;
+  max-height: 700px;
+  overflow: auto;
+}
+.card-text {
+	max-height: 200px;
+  overflow: auto;
+  min-height: 200px;
+}
+#info p {
+	padding-left: 10px;
+}
