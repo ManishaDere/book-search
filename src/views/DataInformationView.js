@@ -10,7 +10,7 @@ App.views.DataInformationView = Backbone.View.extend({
   template: Handlebars.compile($('#dataInfo--template').html()),
 
   render: function(args) {
-    this.$el.append(this.template({
+    this.$el.html(this.template({
       q: args.q,
       totalItems: args.totalItems
     }));

@@ -4,6 +4,7 @@ App.helpers = {
 	setFilters: function (newFilters) {
 		var oldFilters = this.getFilters();
 		var finalFilters = _.extend({}, oldFilters, newFilters);
+    console.log("finalFilters==>", finalFilters);
 		localStorage.setItem('filters', JSON.stringify(finalFilters));
 	},
 	getFilters: function() {
@@ -12,6 +13,8 @@ App.helpers = {
 			return {};
 		}
 		filters = JSON.parse(filters);
+    console.log("filters==>", filters);
+
 		return filters;
 	}
 }

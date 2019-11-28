@@ -10,7 +10,7 @@ App.views.BookItemView = Backbone.View.extend({
   template: Handlebars.compile($('#bookItems--template').html()),
 
   render: function() {
-    this.$el.append(this.template({
+    this.$el.html(this.template({
       title: this.options.title,
       imageLinks: this.options.imageLinks,
       description: this.options.description,

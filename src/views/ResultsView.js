@@ -6,6 +6,8 @@ App.views.ResultsView = Backbone.View.extend({
   events: {
   },
 
+  template: Handlebars.compile($('#bookItems--template').html()),
+
   initialize: function() {
     _.bindAll(this, 'render');
     this.collection = new  App.collections.Results();
@@ -19,6 +21,7 @@ App.views.ResultsView = Backbone.View.extend({
 
     //subscribe event
     App.eventBus.on('QUERY_UPDATE', (function(params) {
+      // console.log("in eventbus ===", params);
       this.fetchData(params);
     }).bind(this));
     //trigger event if we want data initially
@@ -48,6 +51,7 @@ App.views.ResultsView = Backbone.View.extend({
       totalItems: totalItems,
       q: this.filters.q
     });
+    var str = '';
     this.collection.each(function(item){
       var result = item.toJSON();
       var volumeInfo = result.volumeInfo;
@@ -58,8 +62,16 @@ App.views.ResultsView = Backbone.View.extend({
         description: volumeInfo.description,
         infoLink: volumeInfo.infoLink
       });
-      this.$el.append(bookItem.render().el);
+      // this.$el.append(bookItem.render().el);
+      str = str + bookItem.render().el;
     }, this);
+
+      console.log("str",str);
+
+    this.$el.html(str);
+
+
+
     var pagination = new App.views.PaginationView({totalItems: totalItems});
     return this;
   },

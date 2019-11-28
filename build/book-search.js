@@ -19647,6 +19647,7 @@ App.helpers = {
 	setFilters: function (newFilters) {
 		var oldFilters = this.getFilters();
 		var finalFilters = _.extend({}, oldFilters, newFilters);
+    console.log("finalFilters==>", finalFilters);
 		localStorage.setItem('filters', JSON.stringify(finalFilters));
 	},
 	getFilters: function() {
@@ -19655,6 +19656,8 @@ App.helpers = {
 			return {};
 		}
 		filters = JSON.parse(filters);
+    console.log("filters==>", filters);
+
 		return filters;
 	}
 };var App = App || {}
@@ -19697,7 +19700,7 @@ App.views.BookItemView = Backbone.View.extend({
   template: Handlebars.compile($('#bookItems--template').html()),
 
   render: function() {
-    this.$el.append(this.template({
+    this.$el.html(this.template({
       title: this.options.title,
       imageLinks: this.options.imageLinks,
       description: this.options.description,
@@ -19719,7 +19722,7 @@ App.views.DataInformationView = Backbone.View.extend({
   template: Handlebars.compile($('#dataInfo--template').html()),
 
   render: function(args) {
-    this.$el.append(this.template({
+    this.$el.html(this.template({
       q: args.q,
       totalItems: args.totalItems
     }));
@@ -19787,6 +19790,8 @@ App.views.ResultsView = Backbone.View.extend({
   events: {
   },
 
+  template: Handlebars.compile($('#bookItems--template').html()),
+
   initialize: function() {
     _.bindAll(this, 'render');
     this.collection = new  App.collections.Results();
@@ -19800,6 +19805,7 @@ App.views.ResultsView = Backbone.View.extend({
 
     //subscribe event
     App.eventBus.on('QUERY_UPDATE', (function(params) {
+      // console.log("in eventbus ===", params);
       this.fetchData(params);
     }).bind(this));
     //trigger event if we want data initially
@@ -19829,6 +19835,7 @@ App.views.ResultsView = Backbone.View.extend({
       totalItems: totalItems,
       q: this.filters.q
     });
+    var str = '';
     this.collection.each(function(item){
       var result = item.toJSON();
       var volumeInfo = result.volumeInfo;
@@ -19839,8 +19846,16 @@ App.views.ResultsView = Backbone.View.extend({
         description: volumeInfo.description,
         infoLink: volumeInfo.infoLink
       });
-      this.$el.append(bookItem.render().el);
+      // this.$el.append(bookItem.render().el);
+      str = str + bookItem.render().el;
     }, this);
+
+      console.log("str",str);
+
+    this.$el.html(str);
+
+
+
     var pagination = new App.views.PaginationView({totalItems: totalItems});
     return this;
   },
